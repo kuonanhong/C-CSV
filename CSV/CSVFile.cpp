@@ -56,6 +56,31 @@ vector<string> CSVFile::column_info(const string& s) {
     return data;
 }
 
+CSVFile::CsvVector CSVFile::get_column(const int& index) {
+    CSVFile::CsvVector column_data;
+    vector<string> buffer;
+
+    for(unsigned i = 0; i < contents.size(); ++i) {
+        buffer.push_back(contents[i][index]);
+    }
+    column_data.push_back(buffer);
+    return column_data;
+}
+
+CSVFile::CsvVector CSVFile::get_column(const vector<int>& indices) {
+    CSVFile::CsvVector column_data;
+    for(auto&& index : indices)
+    {
+        vector<string> buffer;
+        for(unsigned i = 0; i < contents.size(); ++i)
+        {
+            buffer.push_back(contents[i][index]);
+        }
+        column_data.push_back(buffer);
+    }
+    return column_data;
+}
+
 CSVFile::CsvVector CSVFile::get_column(const string& s) {
     CSVFile::CsvVector column_data;
     column_data.push_back(column_info(s));
@@ -68,6 +93,14 @@ CSVFile::CsvVector CSVFile::get_column(const vector<string>& col_vec) {
         column_data.push_back(column_info(column));
     }
     return column_data;
+}
+
+vector<string> CSVFile::get_row(const int& i) {
+    return contents[i];
+}
+
+CSVFile::CsvVector CSVFile::rows() {
+    return contents;
 }
 
 int CSVFile::index_from_string(const string& s) {

@@ -15,6 +15,7 @@ using namespace std;
 void array_print(const vector<vector<string>>& v) {
     // TODO: Fancy print
     for (auto it = v.begin(); it != v.end(); ++it) {
+        cout << "NEWLINE" << endl;
         for (auto&& i : *it) {
             cout << i << endl;
         }

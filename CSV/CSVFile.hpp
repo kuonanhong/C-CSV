@@ -27,8 +27,14 @@ public:
     inline vector<string>::size_type get_size();
     inline void headers();
     inline vector<string> get_header();
+    CsvVector get_column(const int&);
+    CsvVector get_column(const vector<int>&);
     CsvVector get_column(const string&);
     CsvVector get_column(const vector<string>&);
+    vector<string> get_row(const int&);
+    vector<string> get_row(const int&, const int&); // Rows in range
+    vector<string> get_row(const vector<int>&); // Rows in vector
+    CsvVector rows();
 
 private:
     vector<string> header;
