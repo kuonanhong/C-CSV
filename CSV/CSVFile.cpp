@@ -42,7 +42,7 @@ CSVFile::CSVFile(ifstream& ifs) {
     }
 }
 
-vector<string> CSVFile::get_column(const string& s) {
+vector<string> CSVFile::column_info(const string& s) {
     // Returns all data in the passed column(s)
     // Need to overload this function later
     vector<string> data;
@@ -53,6 +53,20 @@ vector<string> CSVFile::get_column(const string& s) {
     }
     
     return data;
+}
+
+CSVFile::CsvVector CSVFile::get_column(const string& s) {
+    CSVFile::CsvVector column_data;
+    column_data.push_back(column_info(s));
+    return column_data;
+}
+
+CSVFile::CsvVector CSVFile::get_column(const vector<string>& col_vec) {
+    CSVFile::CsvVector column_data;
+    for (auto&& column : col_vec) {
+        column_data.push_back(column_info(column));
+    }
+    return column_data;
 }
 
 int CSVFile::index_from_string(const string& s) {

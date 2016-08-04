@@ -7,3 +7,16 @@
 //
 
 #include "Etc.hpp"
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void array_print(const vector<vector<string>>& v) {
+    // TODO: Fancy print
+    for (auto it = v.begin(); it != v.end(); ++it) {
+        for (auto&& i : *it) {
+            cout << i << endl;
+        }
+    }
+}

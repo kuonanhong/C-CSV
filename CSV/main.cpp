@@ -24,10 +24,14 @@ int main(int argc, const char * argv[]) {
     
     vector<string> header = csv_obj.get_header();
     csv_obj.headers();
-    vector<string> exp = csv_obj.get_column("Experiment Name");
     
+    vector<string> query{"Experiment Name", "Plot ID"};
     
+    vector<vector<string>> cols = csv_obj.get_column(query);
+    csv_obj.get_column("Plot Name");
     
+    array_print(cols);
+
     
     return 0;
 }

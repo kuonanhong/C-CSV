@@ -9,6 +9,16 @@
 #ifndef Etc_hpp
 #define Etc_hpp
 
-#include <stdio.h>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+inline void array_print(const vector<string>& v) {
+    for (auto&& i : v)
+        cout << i << ',';
+}
+
+void array_print(const vector<vector<string>>&);
 
 #endif /* Etc_hpp */

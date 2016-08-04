@@ -18,6 +18,7 @@ using namespace std;
 
 class CSVFile {
     
+typedef vector<vector<string>> CsvVector;
 friend ostream& print(ostream&, const CSVFile&);
     
 public:
@@ -26,12 +27,13 @@ public:
     inline vector<string>::size_type get_size();
     inline void headers();
     inline vector<string> get_header();
-    vector<string> get_column(const string&);
+    CsvVector get_column(const string&);
+    CsvVector get_column(const vector<string>&);
     
 private:
     vector<string> header;
-    vector<vector<string>> contents;
-    //TODO
+    CsvVector contents;
+    vector<string> column_info(const string&);
     int index_from_string(const string&);
 };
 
