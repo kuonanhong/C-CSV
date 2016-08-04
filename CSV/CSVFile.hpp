@@ -17,10 +17,10 @@
 using namespace std;
 
 class CSVFile {
-    
+
 typedef vector<vector<string>> CsvVector;
 friend ostream& print(ostream&, const CSVFile&);
-    
+
 public:
     CSVFile() = default;
     CSVFile(ifstream&);
@@ -29,7 +29,7 @@ public:
     inline vector<string> get_header();
     CsvVector get_column(const string&);
     CsvVector get_column(const vector<string>&);
-    
+
 private:
     vector<string> header;
     CsvVector contents;

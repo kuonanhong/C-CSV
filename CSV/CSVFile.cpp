@@ -11,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -22,10 +23,10 @@ CSVFile::CSVFile(ifstream& ifs) {
         string s;
         if (!getline(ifs, s))
             break;
-        
+
         istringstream ss (s);
         vector<string> record;
-        
+
         while(ss) {
             // Split string by comma delimiter
             string s;
@@ -33,7 +34,7 @@ CSVFile::CSVFile(ifstream& ifs) {
                 break;
             record.push_back(s);
         }
-        
+
         if (line_is_header)
             header = record;
         else
@@ -47,11 +48,11 @@ vector<string> CSVFile::column_info(const string& s) {
     // Need to overload this function later
     vector<string> data;
     int index = index_from_string(s);
-    
+
     for (auto&& i : contents) {
         data.push_back(i[index]);
     }
-    
+
     return data;
 }
 
