@@ -11,7 +11,9 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ friend ostream& print(ostream&, const CSVFile&);
 
 public:
     CSVFile() = default;
-    CSVFile(ifstream&);
+    CSVFile(const string&);
     inline vector<string>::size_type get_size();
     inline void headers();
     inline vector<string> get_header();
@@ -33,11 +35,16 @@ public:
     vector<string> get_row(const int&);
     vector<string> get_row(const int&, const int&); // Rows in range
     vector<string> get_row(const vector<int>&); // Rows in vector
-    CsvVector rows();
+    // Planned: Explicitly declare line to write to.
+    // Pass vector of strings to write lines for
+    void write_row(const map<string,string>&);
+    inline CsvVector rows();
 
 private:
     vector<string> header;
     CsvVector contents;
+    ifstream stream_read;
+    ofstream stream_write;
     vector<string> column_info(const string&);
     int index_from_string(const string&);
 };
@@ -58,4 +65,7 @@ vector<string> CSVFile::get_header() {
 }
 
 
+CSVFile::CsvVector CSVFile::rows() {
+    return contents;
+}
 #endif /* CSVFile_hpp */

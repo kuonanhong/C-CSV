@@ -10,14 +10,18 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <array>
 
-// ifstream constructor: http://www.cplusplus.com/forum/general/17771/#msg89650
-CSVFile::CSVFile(ifstream& ifs) {
+// file doc: http://www.cplusplus.com/doc/tutorial/files/
+// stream_readtream constructor: http://www.cplusplus.com/forum/general/17771/#msg89650
+CSVFile::CSVFile(const string& s) {
+    stream_read.open(s);
+    stream_write.open(s, ios_base::app); // ::app -- Append mode
     bool line_is_header = true; // First line assumed to be the header
-    while (ifs) {
+    while (stream_read) {
         // Grab whole row
         string s;
-        if (!getline(ifs, s))
+        if (!getline(stream_read, s))
             break;
 
         istringstream ss (s);
@@ -36,6 +40,20 @@ CSVFile::CSVFile(ifstream& ifs) {
         else
             contents.push_back(record);
         line_is_header = false; // First iteration clears through the header
+    }
+}
+
+void CSVFile::write_row(const map<string,string>& row) {
+    // ##TODO
+    vector<string> row_vec(header.size(), ",");
+    for(auto it = row.begin(); it != row.end(); ++it) {
+        int index = index_from_string(it->first);
+        cout << index << " : " << it->first << endl;
+        row_vec[index] = it->second;
+    }
+
+    for(auto&& i : row_vec) {
+        cout << i << endl;
     }
 }
 
@@ -93,10 +111,6 @@ CSVFile::CsvVector CSVFile::get_column(const vector<string>& col_vec) {
 
 vector<string> CSVFile::get_row(const int& i) {
     return contents[i];
-}
-
-CSVFile::CsvVector CSVFile::rows() {
-    return contents;
 }
 
 int CSVFile::index_from_string(const string& s) {
