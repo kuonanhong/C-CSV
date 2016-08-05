@@ -8,12 +8,8 @@
 
 #include "CSVFile.hpp"
 #include <fstream>
-#include <iostream>
 #include <sstream>
-#include <string>
 #include <algorithm>
-
-using namespace std;
 
 // ifstream constructor: http://www.cplusplus.com/forum/general/17771/#msg89650
 CSVFile::CSVFile(ifstream& ifs) {

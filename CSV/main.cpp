@@ -6,6 +6,8 @@
 //  Copyright © 2016 SLIN63. All rights reserved.
 //
 
+// TODO: map<vector<string>:vector<string>>
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -33,7 +35,7 @@ int main(int argc, const char * argv[]) {
     array_print(cols);
 
     vector<string> row = csv_obj.get_row(2);
-    array_print(csv_obj.rows());
+    cout << csv_obj.rows().size() << endl;
 
 
     return 0;
