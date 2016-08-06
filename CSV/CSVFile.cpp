@@ -150,6 +150,14 @@ vector<string> CSVFile::get_row(const int& i) {
     return contents[i];
 }
 
+CSVFile::CsvVector CSVFile::get_row(const int& start, const int& end) {
+    CsvVector row_range;
+    for(unsigned i = start; i != end; ++i) {
+        row_range.push_back(contents[i]);
+    }
+    return row_range;
+}
+
 ostream& print(ostream& os, const CSVFile& csv) {
     string csv_string;
     for (auto&& i : csv.contents) {

@@ -36,8 +36,7 @@ public:
     CsvVector get_column(const vector<string>&);
 
     vector<string> get_row(const int&);
-    vector<string> get_row(const int&, const int&); // Rows in range
-    vector<string> get_row(const vector<int>&); // Rows in vector
+    CsvVector get_row(const int&, const int&); // Rows in range
 
     // Planned: Explicitly declare line to write to.
     // Pass vector of strings to write lines for

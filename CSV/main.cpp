@@ -17,16 +17,23 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    // Make sure CSV in path
     string file_name = "Sample.csv";
     CSVFile csv_obj(file_name);
-    csv_obj.headers();
-    map<string,string> row_map;
+
+    typedef vector<vector<string>> CsvVector;
+
+    vector<string> = csv_obj.get_header() // Get available headers in passed CSV
+
+    CsvVector column_one = csv_obj.get_column("Column 1");
+    vector<string> row_1 = csv_obj.get_row(1); // Get rows by index
+    CsvVector row_1_to_3 = csv_obj.get_row(0, 3); // Get rows by range
+
+    map<string,string> row_map; // Map formatted Column: Column value
     row_map["Column 1"] = "ColumnOneVal";
-    // row_map["ASS"] = "Whoops";
-    // row_map["222"] = "s";
+    row_map["Column 2"] = "ColumnTwoVal";
+    row_map["Column 3"] = "ColumnThreeVal";
     cout << endl;
-    csv_obj.write_row(row_map);
+    csv_obj.write_row(row_map); // Use row_map to write a new row
 
     return 0;
 }
