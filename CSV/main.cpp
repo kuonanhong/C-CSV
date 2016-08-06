@@ -14,7 +14,7 @@
 #include <map>
 #include "CSVFile.hpp"
 #include "Etc.hpp"
-
+using namespace std;
 
 int main(int argc, const char * argv[]) {
     // Make sure CSV in path
@@ -22,13 +22,11 @@ int main(int argc, const char * argv[]) {
     CSVFile csv_obj(file_name);
     csv_obj.headers();
     map<string,string> row_map;
-    row_map["Experiment Name"] = "Wow! Experiment!";
-    row_map["Block"] = "Wow! A BLOCK!";
-    row_map["Comments"] = "I love comments";
-    row_map["Row"] = " I hate rows";
+    row_map["Column 1"] = "ColumnOneVal";
+    // row_map["ASS"] = "Whoops";
+    // row_map["222"] = "s";
     cout << endl;
     csv_obj.write_row(row_map);
-
 
     return 0;
 }
