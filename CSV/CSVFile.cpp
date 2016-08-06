@@ -10,13 +10,14 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <iterator>
 #include <array>
 
 // file doc: http://www.cplusplus.com/doc/tutorial/files/
 // stream_readtream constructor: http://www.cplusplus.com/forum/general/17771/#msg89650
-CSVFile::CSVFile(const string& s) {
-    stream_read.open(s);
-    stream_write.open(s, ios_base::app); // ::app -- Append mode
+CSVFile::CSVFile(const string& file_name) {
+    stream_read.open(file_name);
+    stream_write.open(file_name, ios_base::app); // ::app -- Append mode
     bool line_is_header = true; // First line assumed to be the header
     while (stream_read) {
         // Grab whole row
@@ -44,17 +45,31 @@ CSVFile::CSVFile(const string& s) {
 }
 
 void CSVFile::write_row(const map<string,string>& row) {
-    // ##TODO
+    // ##TODO - Broken
+    // Need to find a separate way to do this. Probably put out all the indices and THEN separate them by commas.
     vector<string> row_vec(header.size(), ",");
     for(auto it = row.begin(); it != row.end(); ++it) {
         int index = index_from_string(it->first);
         cout << index << " : " << it->first << endl;
-        row_vec[index] = it->second;
+        cout << header.size() << endl;
+        row_vec[(index == 0) ? index : index + 1] = it->second;
+        row_vec.push_back(",,");
     }
 
-    for(auto&& i : row_vec) {
-        cout << i << endl;
-    }
+    string v_string = merge_row_vector(row_vec);
+
+    cout << v_string << endl;
+
+    stream_write << endl << v_string;
+}
+
+// http://stackoverflow.com/questions/1430757/c-vector-to-string
+string CSVFile::merge_row_vector(const vector<string>& row_vector) {
+    ostringstream stream;
+    copy(row_vector.begin(), row_vector.end(), ostream_iterator<string>(stream));
+    string v_string = stream.str();
+    v_string.erase(v_string.length() - 1);
+    return v_string;
 }
 
 vector<string> CSVFile::column_info(const string& s) {

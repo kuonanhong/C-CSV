@@ -46,6 +46,7 @@ private:
     ifstream stream_read;
     ofstream stream_write;
     vector<string> column_info(const string&);
+    string merge_row_vector(const vector<string>&);
     int index_from_string(const string&);
 };
 
