@@ -13,8 +13,6 @@
 #include <string>
 #include <map>
 #include "CSVFile.hpp"
-#include "Etc.hpp"
-using namespace std;
 
 int main(int argc, const char * argv[]) {
     string file_name = "Sample.csv";
@@ -22,7 +20,7 @@ int main(int argc, const char * argv[]) {
 
     typedef vector<vector<string>> CsvVector;
 
-    vector<string> = csv_obj.get_header() // Get available headers in passed CSV
+    vector<string> headers = csv_obj.get_header(); // Get available headers in passed CSV
 
     CsvVector column_one = csv_obj.get_column("Column 1");
     vector<string> row_1 = csv_obj.get_row(1); // Get rows by index
